@@ -84,31 +84,27 @@ Group 1
 */
 // Q4: Create an array of officer objects who captain starships
 
-let allOfficers = vulcanOfficers + humanOfficers + femaleOfficers
+let allCaptains: [Officer] = captains.map{Officer(name: $0, ship: $1)}
 
-let officerCaps = captains.keys.filter({allOfficers.contains($0)})
-print(officerCaps)
-
+print(allCaptains)
 
 // Q5: Alphabetize the previous list by the captain's name
 
-officerCaps.sorted()
-
-
-
+let allCaptainsAlpha = captains.map{Officer(name: $0, ship: $1)}.sorted(by: {$0 < $1})
+print(allCaptainsAlpha.map{$0.name})
 
 /*:
 Group 2
 */
 // Q6: Create an array of officers serving as first officers who are also Vulcan
 
-let firstVulcan = firstOfficers.keys.filter({vulcanOfficers.contains($0)})
+var firstVulcan: [Officer] = firstOfficers.map{Officer(name: $0, ship: $1)}
+firstVulcan = firstVulcan.filter({vulcanOfficers.contains($0.name)})
 print(firstVulcan)
-
 
 // Q7: How many these Vulcan first officers have names shorter than 5 characters?
 
-print(firstVulcan.filter({$0.count < 5}).count)
+print(firstVulcan.filter({$0.name.count < 5}).count)
 
 
 
